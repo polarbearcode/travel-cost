@@ -3,6 +3,7 @@ import { Item } from "@/app/lib/definitions";
 import Dropdown from "./dropdown";
 import { useState } from "react";
 import Form from "./add-item-form";
+import { deleteItem } from "../lib/data";
 
 export default function ItemsTable({ items }: { items: Item[] }) {
   const [showAddItemForm, setShowAddItemForm] = useState(false);
@@ -11,6 +12,13 @@ export default function ItemsTable({ items }: { items: Item[] }) {
     setShowAddItemForm(value);
   }
 
+  function handleOnCancel() {
+    setShowAddItemForm(false);
+  }
+
+  async function handleDeleteItem(id: number) {
+    await deleteItem(id);
+  }
   return (
     <>
       <div className="w-full">
@@ -45,9 +53,20 @@ export default function ItemsTable({ items }: { items: Item[] }) {
                         </td>
                         {item.whoPaid && (
                           <td className=" bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
-                            {/* Placeholder for "Who Paid" dropdown */}
+                            {item.whoPaid}
                           </td>
                         )}
+
+                        <td>
+                          <button onClick={() => handleDeleteItem(item.id)}>
+                            <img
+                              src="./delete-svgrepo-com.svg"
+                              alt="Delete"
+                              width="20"
+                              height="20"
+                            />
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -56,10 +75,27 @@ export default function ItemsTable({ items }: { items: Item[] }) {
             </div>
           </div>
         </div>
-
-        <button onClick={() => handleAddItemClick(true)}>Add Item</button>
+        {showAddItemForm ? (
+          <button onClick={() => handleAddItemClick(!showAddItemForm)}>
+            <img
+              src="./minus-circle-svgrepo-com.svg"
+              alt="Add Item"
+              width="20"
+              height="20"
+            />
+          </button>
+        ) : (
+          <button onClick={() => handleAddItemClick(!showAddItemForm)}>
+            <img
+              src="./add-circle-svgrepo-com.svg"
+              alt="Add Item"
+              width="20"
+              height="20"
+            />
+          </button>
+        )}
       </div>
-      {showAddItemForm && <Form />}
+      {showAddItemForm && <Form onCancel={handleOnCancel} />}
     </>
   );
 }

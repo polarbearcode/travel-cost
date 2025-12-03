@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { addItem } from "../lib/data";
 
-export default function Form() {
+export default function Form({ onCancel }: { onCancel: () => void }) {
   const initialState = { message: "", error: "" };
   const [_, formAction] = useActionState(addItem, initialState);
   return (
@@ -50,8 +50,9 @@ export default function Form() {
       </button>
 
       <button
-        type="submit"
+        type="button"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={onCancel}
       >
         Cancel
       </button>

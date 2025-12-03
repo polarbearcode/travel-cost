@@ -18,7 +18,7 @@ export default function Total({ items }: { items: Item[] }) {
   return (
     <div>
       <ul>
-        <li>Total: {total}</li>
+        <li>Total: {roundToDecimalPlaces(total, 2)}</li>
         <li>Benny: {calculatePaidBy("benny")}</li>
         <li>Edwin: {calculatePaidBy("edwin")}</li>
       </ul>

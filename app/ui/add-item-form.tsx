@@ -24,7 +24,7 @@ export default function Form({ onCancel }: { onCancel: () => void }) {
         >
           Total
         </label>
-        <input id="item-total" name="item-total" type="number" />
+        <input id="item-total" name="item-total" type="number" step="0.01" />
       </div>
       <div className="mb-4">
         <label

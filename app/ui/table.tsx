@@ -27,7 +27,7 @@ export default function ItemsTable({ items }: { items: Item[] }) {
           <div className="overflow-x-auto">
             <div className="inline-block min-w-full align-middle">
               <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
-                <table className="hidden min-w-full rounded-md text-gray-900 table">
+                <table className="min-w-full rounded-md text-gray-900 table">
                   <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                     <tr>
                       <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
